@@ -50,7 +50,7 @@ const Login: React.FC<LoginProps> = ({ setIsLoggedIn, setUserName }) => {
 
   const handleSubmit = async (values: LoginEntity) => {
     try {
-      const response = await axios.post(`http://localhost:8080/api/user/login`, values, {
+      const response = await axios.post(`http://43.203.87.56:8080/api/user/login`, values, {
         headers: {
           'Content-Type': 'application/json',
         },

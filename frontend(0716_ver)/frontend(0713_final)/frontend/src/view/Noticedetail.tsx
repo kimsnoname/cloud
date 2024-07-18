@@ -40,8 +40,8 @@ const NoticeDetail: React.FC = () => {
     const fetchNoticeAndReplies = async () => {
       try {
         const [noticeResponse, repliesResponse] = await Promise.all([
-          axios.get(`http://localhost:8080/api/notices/${noticeId}`),
-          axios.get(`http://localhost:8080/api/replies/notice/${noticeId}`)
+          axios.get(`http://43.203.87.56:8080/api/notices/${noticeId}`),
+          axios.get(`http://43.203.87.56:8080/api/replies/notice/${noticeId}`)
         ]);
         setNotice(noticeResponse.data);
         setReplies(repliesResponse.data);
@@ -60,7 +60,7 @@ const NoticeDetail: React.FC = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8080/api/notices/${noticeId}`);
+      await axios.delete(`http://43.203.87.56:8080/api/notices/${noticeId}`);
       message.success('공지사항이 삭제되었습니다.');
       navigate('/noticelist');
     } catch (error) {
@@ -85,7 +85,7 @@ const NoticeDetail: React.FC = () => {
     };
 
     try {
-      await axios.post('http://localhost:8080/api/replies', newReplyData);
+      await axios.post('http://43.203.87.56:8080/api/replies', newReplyData);
       setReplies([...replies, newReplyData]);
       setNewReply('');
       message.success('댓글이 추가되었습니다.');
@@ -98,7 +98,7 @@ const NoticeDetail: React.FC = () => {
   
   const handleReplyDelete = async (replyId: number) => {
     try {
-      await axios.delete(`http://localhost:8080/api/replies/${replyId}`);
+      await axios.delete(`http://43.203.87.56:8080/api/replies/${replyId}`);
       setReplies(replies.filter(reply => reply.replyId !== replyId));
       message.success('댓글이 삭제되었습니다.');
     } catch (error) {

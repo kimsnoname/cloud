@@ -29,7 +29,7 @@ const GetMyInfo = () => {
       }
 
       try {
-        const response = await axios.get('http://localhost:8080/api/user/info', {
+        const response = await axios.get('http://43.203.87.56:8080/api/user/info', {
           headers: {
             Authorization: `Bearer ${token}`,
           },

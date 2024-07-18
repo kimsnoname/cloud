@@ -39,7 +39,7 @@ const postOrderRequest = async (orderType: boolean, companyId: number, price: nu
 
   // 매수
   if (!orderType) {
-    const response = await axios.post(`http://localhost:8080/stock/buy?companyId=${companyId}&price=${price}&stockCount=${volume}`, {}, options);
+    const response = await axios.post(`http://43.203.87.56:8080/stock/buy?companyId=${companyId}&price=${price}&stockCount=${volume}`, {}, options);
     const orderResult = await response.data;
 
     return orderResult;
@@ -47,7 +47,7 @@ const postOrderRequest = async (orderType: boolean, companyId: number, price: nu
 
   // 매도
   if (orderType) {
-    const response = await axios.post(`http://localhost:8080/stock/sell?companyId=${companyId}&price=${price}&stockCount=${volume}`, {}, options);
+    const response = await axios.post(`http://43.203.87.56:8080/stock/sell?companyId=${companyId}&price=${price}&stockCount=${volume}`, {}, options);
     const orderResult = await response.data;
 
     return orderResult;

@@ -40,7 +40,7 @@ const useGetStockInfo = (companyId: number) => {
 };
 
 const getStockInfo = async (companyId: number) => {
-  const res = await axios.get(`http://localhost:8080/api/kisd/companies/${companyId}`);
+  const res = await axios.get(`http://43.203.87.56:8080/api/kisd/companies/${companyId}`);
   const stockInfo = res.data;
   return stockInfo;
 };

@@ -31,7 +31,7 @@ const Community: React.FC<CommunityPageProps> = ({ hideInput, customStyle, h1Sty
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/posts'); // 전체 게시글 가져오는 엔드포인트로 수정
+        const response = await axios.get('http://43.203.87.56:8080/api/posts'); // 전체 게시글 가져오는 엔드포인트로 수정
         setPosts(response.data);
       } catch (error) {
         console.error('Error fetching posts:', error);

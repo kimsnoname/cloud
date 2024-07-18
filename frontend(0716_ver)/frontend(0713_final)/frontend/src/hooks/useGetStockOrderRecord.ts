@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { StateProps } from "../models/stateProps";
 
-const url = "http://localhost:8080/stock/stockorders";
+const url = "http://43.203.87.56:8080/stock/stockorders";
 
 const useGetStockOrderRecord = () => {
   const isLogin = useSelector((state: StateProps) => state.login);

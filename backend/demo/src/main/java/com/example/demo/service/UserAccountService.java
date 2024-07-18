@@ -1,20 +1,27 @@
 package com.example.demo.service;
 
+import org.apache.commons.codec.digest.DigestUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.model.UserAccount;
 import com.example.demo.repository.UserAccountRepository;
 
-import lombok.RequiredArgsConstructor;
-
-@RequiredArgsConstructor
 @Service
 public class UserAccountService {
 
     private final UserAccountRepository userAccountRepository;
 
+    @Autowired
+    public UserAccountService(UserAccountRepository userAccountRepository) {
+        this.userAccountRepository = userAccountRepository;
+    }
+
     public UserAccount createAccount(Long userId, UserAccount userAccount) {
-        // Add any additional business logic here if needed
+        // Hash the password before saving
+        String hashedPassword = hashPassword(userAccount.getAccountPassword());
+        userAccount.setAccountPassword(hashedPassword);
+        userAccount.setUserId(userId);
         return userAccountRepository.save(userAccount);
     }
 
@@ -43,5 +50,9 @@ public class UserAccountService {
 
         userAccount.setBalance(userAccount.getBalance() + amount.intValue());
         userAccountRepository.save(userAccount);
+    }
+
+    private String hashPassword(String password) {
+        return DigestUtils.md5Hex(password);
     }
 }

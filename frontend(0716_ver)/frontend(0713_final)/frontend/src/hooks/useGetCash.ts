@@ -4,7 +4,7 @@ import axios from "axios";
 import { StateProps } from "../models/stateProps";
 
 // 🔴 API 수정 전으로 임시 파라미터 설정해놓음
-const url = "http://localhost:8080/cash";
+const url = "http://43.203.87.56:8080/cash";
 
 const useGetCash = () => {
   const isLogin = useSelector((state: StateProps) => state.login);

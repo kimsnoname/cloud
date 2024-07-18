@@ -27,7 +27,7 @@ const Board: React.FC = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/posts/${boardId}`);
+        const response = await axios.get(`http://43.203.87.56:8080/api/posts/${boardId}`);
         setPosts(response.data);
       } catch (error) {
         console.error('Error fetching posts:', error);

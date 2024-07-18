@@ -15,7 +15,7 @@ const Comments = ({ boardId }: { boardId: number }) => {
   const fetchCommentsFromServer = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/api/boards/${boardId}`
+        `http://43.203.87.56:8080/api/boards/${boardId}`
       );
 
       // 게시판 데이터에서 댓글 부분을 추출합니다.
@@ -46,7 +46,7 @@ const Comments = ({ boardId }: { boardId: number }) => {
 
       try {
         const response = await axios.post(
-          `http://localhost:8080/api/boards/${boardId}/comments`,
+          `http://43.203.87.56:8080/api/boards/${boardId}/comments`,
           newCommentData,
           {
             headers: {
@@ -75,7 +75,7 @@ const Comments = ({ boardId }: { boardId: number }) => {
   const handleDeleteComment = async (commentId: number) => {
     try {
       const response = await axios.delete(
-        `http://localhost:8080/api/boards/${boardId}/comments/${commentId}`,
+        `http://43.203.87.56:8080/api/boards/${boardId}/comments/${commentId}`,
 
         {
           headers: {

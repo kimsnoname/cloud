@@ -4,7 +4,7 @@ import axios from "axios";
 import { StateProps } from "../models/stateProps";
 import { setCashId } from '../reducer/cash/cashSlice'; // Import setCashId action
 
-const url = "http://localhost:8080/cash";
+const url = "http://43.203.87.56:8080/cash";
 
 const useGetCashId = () => {
   const dispatch = useDispatch(); // Create a dispatch instance

@@ -93,7 +93,7 @@ const Transfer: React.FC = () => {
 
   const token = localStorage.getItem('token'); // 로컬 스토리지에서 JWT 토큰 가져오기
   const axiosInstance = axios.create({
-    baseURL: 'http://localhost:8080/api',
+    baseURL: 'http://43.203.87.56:8080/api',
     headers: {
       'Content-Type': 'application/json',
     },
@@ -149,7 +149,7 @@ const Transfer: React.FC = () => {
   };
 
   const handlePasswordInput = (value: string) => {
-    if (accountPassword.length < 4) {
+    if (accountPassword.length < 6) {
       setAccountPassword(accountPassword + value);
     }
   };
@@ -160,14 +160,14 @@ const Transfer: React.FC = () => {
 
   const handlePasswordSubmit = async () => {
     // const userId = 22;
-    if (accountPassword.length !== 4) {
-      message.error("비밀번호는 4자리여야 합니다.");
+    if (accountPassword.length !== 6) {
+      message.error("비밀번호는 6자리여야 합니다.");
       return;
     }
     try {
       // 비밀번호 검증 API 호출
       const response = await axios.post(
-        'http://localhost:8080/api/transfer/verifypassword',
+        'http://43.203.87.56:8080/api/transfer/verifypassword',
         {
           userId,
           accountPassword
@@ -190,7 +190,7 @@ const Transfer: React.FC = () => {
         };
   
         try {  
-          const transferResponse = await axios.post('http://localhost:8080/api/account/transfer', data, {
+          const transferResponse = await axios.post('http://43.203.87.56:8080/api/account/transfer', data, {
             headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${token}` // JWT 토큰을 Authorization 헤더에 포함
@@ -567,7 +567,7 @@ const Transfer: React.FC = () => {
         >
           <div className="modal-content">
             <div className="password-dots">
-              {Array(4)
+              {Array(6)
                 .fill(0)
                 .map((_, i) => (
                   <div

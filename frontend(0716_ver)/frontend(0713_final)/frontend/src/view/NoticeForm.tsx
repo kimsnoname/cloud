@@ -32,7 +32,7 @@ const NoticeForm: React.FC = () => {
 
   useEffect(() => {
     if (isEdit && noticeId) {
-      axios.get(`http://localhost:8080/api/notices/${noticeId}`)
+      axios.get(`http://43.203.87.56:8080/api/notices/${noticeId}`)
         .then(response => {
           setNotices([response.data]);
           setTitle(response.data.title);
@@ -44,7 +44,7 @@ const NoticeForm: React.FC = () => {
           message.error('공지사항을 불러오는 데 실패했습니다.');
         });
     } else {
-      axios.get('http://localhost:8080/api/notices')
+      axios.get('http://43.203.87.56:8080/api/notices')
         .then(response => {
           setNotices(response.data);
         })
@@ -91,10 +91,10 @@ const NoticeForm: React.FC = () => {
 
     try {
       if (isEdit) {
-        const response = await axios.put(`http://localhost:8080/api/notices/${noticeId}`, newNotice);
+        const response = await axios.put(`http://43.203.87.56:8080/api/notices/${noticeId}`, newNotice);
         setNotices(notices.map(n => (n.noticeId === newNotice.noticeId ? response.data : n)));
       } else {
-        const response = await axios.post('http://localhost:8080/api/notices', newNotice);
+        const response = await axios.post('http://43.203.87.56:8080/api/notices', newNotice);
         setNotices([...notices, response.data]);
       }
       message.success('공지사항이 저장되었습니다.');

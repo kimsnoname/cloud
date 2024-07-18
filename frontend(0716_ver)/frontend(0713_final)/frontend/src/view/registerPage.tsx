@@ -48,7 +48,7 @@ const Register: React.FC = () => {
   const checkDuplicateUserName = async () => {
     setErrorMessage('');
     try {
-      const response = await axios.post('http://localhost:8080/api/user/check-username', { userName });
+      const response = await axios.post('http://43.203.87.56:8080/api/user/check-username', { userName });
       if (response.status === 200) {
         setErrorMessage('사용가능한 닉네임입니다.');
         setIsRegisterButtonDisabled(false);
@@ -67,7 +67,7 @@ const Register: React.FC = () => {
   const handleEmailVerification = async () => {
     setErrorMessage('');
     try {
-      const response = await axios.post('http://localhost:8080/api/user/check-email', { email });
+      const response = await axios.post('http://43.203.87.56:8080/api/user/check-email', { email });
       if (response.status === 200) {
         const code = Math.floor(100000 + Math.random() * 900000).toString();
         setGeneratedCode(code);
@@ -128,7 +128,7 @@ const Register: React.FC = () => {
     const registerEmail = email;
 
     try {
-      const response = await axios.post('http://localhost:8080/api/user/register', data, 
+      const response = await axios.post('http://43.203.87.56:8080/api/user/register', data, 
         {
           headers: {
             'Content-Type': 'application/json',

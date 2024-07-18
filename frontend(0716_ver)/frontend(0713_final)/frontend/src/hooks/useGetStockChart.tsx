@@ -24,7 +24,7 @@ const useGetStockChart = (companyId: number) => {
   const compareId = useSelector((state: StateProps) => state.compareChart);
   const { stockInfo: compareInfo } = useGetStockInfo(compareId);
 
-  const url = "http://localhost:8080/companies/charts/";
+  const url = "http://43.203.87.56:8080/companies/charts/";
   const averageDay = 10;
 
   const getCompareChart = async (compareId: number, compareName: string) => {

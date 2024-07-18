@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query';
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:8080';
+const BASE_URL = 'http://43.203.87.56:8080';
 
 // 데이터 타입 정의
 type CompanyData = {

@@ -1,14 +1,11 @@
 package com.example.demo.controller;
 
-import java.util.List;
-import java.util.Random;
 import java.util.Optional;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,15 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.AccountPassword;
-import com.example.demo.model.UserAccount;
-import com.example.demo.repository.UserAccountRepository;
-import com.example.demo.service.UserAccountService;
-import com.example.demo.service.UserService;
 import com.example.demo.model.User;
+import com.example.demo.model.UserAccount;
 import com.example.demo.repository.UserRepository;
-
-
-import lombok.RequiredArgsConstructor;
+import com.example.demo.service.UserAccountService;
 
 @RestController
 @RequestMapping("/api/account")
@@ -32,9 +24,6 @@ public class UserAccountController {
 
     @Autowired
     private UserRepository userRepository;
-
-    // @Autowired
-    // private UserAccountRepository accountRepository;
 
     @Autowired
     private UserAccountService userAccountService;
@@ -48,7 +37,7 @@ public class UserAccountController {
                 return ResponseEntity.notFound().build(); // 사용자가 존재하지 않으면 404 반환
             }
             User user = userOptional.get();
-            
+
             // 계좌 정보 설정
             UserAccount userAccount = new UserAccount();
             userAccount.setUserId(user.getUser_id());

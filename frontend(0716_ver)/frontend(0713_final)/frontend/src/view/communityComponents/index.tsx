@@ -5,7 +5,7 @@ import { DotIcon } from "./IconComponent/Icon";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-const serverUrl = "http://localhost:8080/api/boards";
+const serverUrl = "http://43.203.87.56:8080/api/boards";
 
 const TimeLineComponent = () => {
   const [boardData, setBoardData] = useState<BoardData[]>([]);

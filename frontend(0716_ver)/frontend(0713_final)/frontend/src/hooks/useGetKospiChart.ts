@@ -81,7 +81,7 @@ export default useGetKospiChart;
 // kospi 차트 데이터 fetch 로직
 export const getKospiData = async () => {
   const res = await axios.get(
-    "http://localhost:8080/api/kisd/kospi"
+    "http://43.203.87.56:8080/api/kisd/kospi"
   );
   const chartData = res.data.output2;
   const kospiData = chartData.reverse();

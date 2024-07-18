@@ -20,7 +20,7 @@ const CommunityUpdate: React.FC = () => {
   useEffect(() => {
     const getPost = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/posts/${boardId}/${id}`);
+        const response = await axios.get(`http://43.203.87.56:8080/api/posts/${boardId}/${id}`);
         setPost(response.data);
       } catch (error) {
         console.error('Error fetching post:', error);
@@ -50,7 +50,7 @@ const CommunityUpdate: React.FC = () => {
 
   const updatePost = async () => {
     try {
-      await axios.put(`http://localhost:8080/api/posts/${boardId}/${id}`, post);
+      await axios.put(`http://43.203.87.56:8080/api/posts/${boardId}/${id}`, post);
       message.success('수정되었습니다.');
       navigate(`/community/${boardId}/${id}`);
     } catch (error) {

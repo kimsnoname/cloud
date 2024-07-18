@@ -5,7 +5,7 @@ const setupProxy = (app: Application) => {
     app.use(
         '/api/v1',
         createProxyMiddleware({
-            target: 'http://localhost:8080',
+            target: 'http://43.203.87.56:8080',
             changeOrigin: true,
         })
     );

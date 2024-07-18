@@ -40,7 +40,7 @@ const CommunityForm: React.FC = () => {
   useEffect(() => {
     const fetchBoardPosts = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/posts/${boardId}`);
+        const response = await axios.get(`http://43.203.87.56:8080/api/posts/${boardId}`);
         setPosts(response.data);
       } catch (error) {
         console.error('Error fetching board posts:', error);
@@ -101,10 +101,10 @@ const CommunityForm: React.FC = () => {
 
     try {
       if (isEdit) {
-        const response = await axios.put(`http://localhost:8080/api/posts/${boardIdInput}/${id}`, newPost);
+        const response = await axios.put(`http://43.203.87.56:8080/api/posts/${boardIdInput}/${id}`, newPost);
         setPosts(posts.map(p => (p.id === newPost.id && p.boardId === newPost.boardId ? response.data : p)));
       } else {
-        const response = await axios.post('http://localhost:8080/api/posts', newPost);
+        const response = await axios.post('http://43.203.87.56:8080/api/posts', newPost);
         setPosts([...posts, response.data]);
       }
       message.success('글이 저장되었습니다.');

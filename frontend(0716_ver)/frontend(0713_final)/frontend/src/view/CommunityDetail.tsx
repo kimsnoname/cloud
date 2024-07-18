@@ -32,9 +32,9 @@ const CommunityDetail: React.FC = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/api/posts/${boardId}/${id}`);
+        const response = await axios.get(`http://43.203.87.56:8080/api/posts/${boardId}/${id}`);
         setPost(response.data);
-        const commentsResponse = await axios.get(`http://localhost:8080/api/replies/${boardId}/${id}`);
+        const commentsResponse = await axios.get(`http://43.203.87.56:8080/api/replies/${boardId}/${id}`);
         setComments(commentsResponse.data);
         console.log('Post loaded:', response.data);
       } catch (error) {
@@ -52,7 +52,7 @@ const CommunityDetail: React.FC = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:8080/api/posts/${boardId}/${id}`);
+      await axios.delete(`http://43.203.87.56:8080/api/posts/${boardId}/${id}`);
       message.success('글이 삭제되었습니다.');
       navigate(`/community/${boardId}`);
     } catch (error) {
@@ -75,7 +75,7 @@ const CommunityDetail: React.FC = () => {
     };
   
     try {
-      await axios.post(`http://localhost:8080/api/reply/add`, {
+      await axios.post(`http://43.203.87.56:8080/api/reply/add`, {
         ...newCommentData,
         boardId,
         postId: id,
@@ -91,7 +91,7 @@ const CommunityDetail: React.FC = () => {
 
   const handleCommentDelete = async (replyId: number) => {
     try {
-        const response = await axios.delete(`http://localhost:8080/api/delete/reply/${boardId}/${id}/${replyId}`);
+        const response = await axios.delete(`http://43.203.87.56:8080/api/delete/reply/${boardId}/${id}/${replyId}`);
         if (response.status === 204) {
             setComments(comments.filter(comment => comment.replyId !== replyId));
             message.success('댓글이 삭제되었습니다.');

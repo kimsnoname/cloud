@@ -1,14 +1,14 @@
 package com.example.demo.service;
 
-import com.example.demo.model.*;
-import com.example.demo.repository.*;
-
-//import jakarta.transaction.Transactional;
-
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.stereotype.Service;
-import java.util.Optional;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.example.demo.model.Transfer;
+import com.example.demo.model.UserAccount;
+import com.example.demo.repository.TransferRepository;
+import com.example.demo.repository.UserAccountRepository;
 
 @Service
 @Transactional
@@ -56,11 +56,15 @@ public class TransferService {
     public boolean verifyPassword(Long userId, String accountPassword) throws Exception {
         UserAccount userAccount = userAccountRepository.findByUserId(userId)
                 .orElseThrow(() -> new Exception("User not found"));
-        return userAccount.getAccountPassword().equals(accountPassword);
+        return userAccount.getAccountPassword().equals(hashPassword(accountPassword));
     }
 
     public void saveTransfer(Transfer transfer) {
         throw new UnsupportedOperationException("Unimplemented method 'saveTransfer'");
+    }
+
+    private String hashPassword(String password) {
+        return DigestUtils.md5Hex(password);
     }
     
 }

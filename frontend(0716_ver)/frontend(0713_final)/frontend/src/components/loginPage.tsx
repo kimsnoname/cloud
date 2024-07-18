@@ -48,7 +48,7 @@ const TestLogin: React.FC = () => {
       name,
   };
   try {
-    const response = await fetch('http://localhost:8080/api/v1/test/test1', {
+    const response = await fetch('http://43.203.87.56:8080/api/v1/test/test1', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

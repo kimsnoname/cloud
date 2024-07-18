@@ -1,7 +1,7 @@
 import { useQuery, useQueryClient } from "react-query";
 import axios from "axios";
 
-const url = "http://localhost:8080/long-polling/listen";
+const url = "http://43.203.87.56:8080/long-polling/listen";
 
 const useGetWaitOrderSuccessInfo = () => {
   const queryClient = useQueryClient();

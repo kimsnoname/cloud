@@ -16,9 +16,6 @@ const AccountRegistration: React.FC = () => {
 
   const userId = 8; // 하드코딩된 사용자 ID
   const { registerEmail } = location.state as { registerEmail: string };
-  console.log("이메일 ",registerEmail);
-
-
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,8 +25,8 @@ const AccountRegistration: React.FC = () => {
       return;
     }
 
-    if (accountPW === '') {
-      message.error('계좌 비밀번호를 입력해주세요.');
+    if (accountPW.length !== 6) {
+      message.error('계좌 비밀번호는 6자리로 입력해주세요.');
       return;
     }
 
@@ -38,7 +35,7 @@ const AccountRegistration: React.FC = () => {
     };
 
     try {
-      const response = await axios.post(`http://localhost:8080/api/account/create?email=${registerEmail}`, data, {
+      const response = await axios.post(`http://43.203.87.56:8080/api/account/create?email=${registerEmail}`, data, {
         headers: {
           'Content-Type': 'application/json',
         },
@@ -63,7 +60,11 @@ const AccountRegistration: React.FC = () => {
         <Form.Item
           label="계좌 비밀번호"
           name="accountPW"
-          rules={[{ required: true, message: '계좌 비밀번호를 입력해주세요.' }]}
+          rules={[
+            { required: true, message: '계좌 비밀번호를 입력해주세요.' },
+            { min: 6, message: '계좌 비밀번호는 6자리로 입력해주세요.' },
+            { max: 6, message: '계좌 비밀번호는 6자리로 입력해주세요.' },
+          ]}
         >
           <Input.Password value={accountPW} onChange={(e) => setAccountPW(e.target.value)} />
         </Form.Item>

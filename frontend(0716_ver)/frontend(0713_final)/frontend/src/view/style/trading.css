@@ -13,11 +13,26 @@ body {
 }
 
 @media (max-width: 768px) {
-    .custom-modal {
-      left: -50% !important;
-      transform: translateX(-80%) !important;      
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      overflow-x: hidden;
     }
-}
+  
+    .container {
+      width: 100%;
+      padding: 0 10px;
+      box-sizing: border-box;
+    }
+  
+    .sub-container-1,
+    .sub-container-2,
+    .sub-container-3,
+    .sub-container-4 {
+      width: 100%;
+    }
+  }
 
 .sub-container-1 {
     width: 990px;

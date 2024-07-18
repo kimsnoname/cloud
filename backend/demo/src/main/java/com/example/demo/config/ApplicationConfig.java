@@ -1,7 +1,5 @@
 package com.example.demo.config;
 
-import com.example.demo.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,10 +11,15 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.example.demo.repository.UserRepository;
+
+import lombok.RequiredArgsConstructor;
+
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfig {
     private final UserRepository userRepository;
+
     @Bean
     public UserDetailsService userDetailsService() {
         return username -> userRepository
@@ -32,15 +35,23 @@ public class ApplicationConfig {
         return authProvider;
     }
 
-    // 인증 책임자
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
 
-    // 비밀번호 암호화 알고리즘 설정
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean(name = "sha256PasswordEncoder")
+    public PasswordEncoder sha256PasswordEncoder() {
+        return new SHA256PasswordEncoder();
+    }
+
+    @Bean(name = "md5PasswordEncoder")
+    public PasswordEncoder md5PasswordEncoder() {
+        return new MD5PasswordEncoder();
     }
 }

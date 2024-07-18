@@ -18,7 +18,7 @@ const Transactions = () => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token'); // 로컬 스토리지에서 JWT 토큰 가져오기
-        const response = await axios.get('http://localhost:8080/api/transaction/list', {
+        const response = await axios.get('http://43.203.87.56:8080/api/transaction/list', {
           headers: {
             Authorization: `Bearer ${token}`
           }

@@ -11,7 +11,7 @@ export default useGetCompanyList;
 
 // 서버에서 Company 목록 fetch 하는 함수
 const getCompanyList = async () => {
-  const res = await axios.get("http://localhost:8080/api/kisd/companies");
+  const res = await axios.get("http://43.203.87.56:8080/api/kisd/companies");
   const companyList = await res.data;
 
   return companyList;

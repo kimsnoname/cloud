@@ -22,7 +22,7 @@ const NoticeList: React.FC = () => {
   useEffect(() => {
     const fetchNotices = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/notices');
+        const response = await axios.get('http://43.203.87.56:8080/api/notices');
         setNotices(response.data);
       } catch (error) {
         console.error('Error fetching notices:', error);

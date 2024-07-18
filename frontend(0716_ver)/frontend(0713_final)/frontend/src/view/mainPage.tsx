@@ -87,7 +87,7 @@ const MainPage: React.FC = () => {
       localStorage.removeItem('userName');
       localStorage.removeItem('accessToken');
     }
-  };
+  }; 
 
   const isAuthPage = location.pathname === '/login' || location.pathname === '/register' || location.pathname === '/welcome' || location.pathname === '/accountRegistration';
 
@@ -146,7 +146,7 @@ const MainPage: React.FC = () => {
                 <Button type="default" onClick={handleLoginRedirect} className="login-button">로그인</Button>
               </>
             )}
-            <Button type="dashed" onClick={toggleLogin}>Toggle Login</Button>
+            <Button type="dashed" onClick={toggleLogin}>Toggle Login</Button>  
           </div>
         </div>
       )}

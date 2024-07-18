@@ -91,7 +91,7 @@ const TestRegister: React.FC = () => {
   };
 
   try {
-    const response = await axios.post('http://localhost:8080/api/v1/test/test1', data, 
+    const response = await axios.post('http://43.203.87.56:8080/api/v1/test/test1', data, 
       {
         headers: {
           'Content-Type': 'application/json',
