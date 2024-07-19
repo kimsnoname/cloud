@@ -50,8 +50,7 @@ public class SecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
         config.setAllowedOrigins(List.of(
-                "http://localhost:5173", "http://3.34.131.77:5173", "http://localhost:5002", "http://localhost:8080"
-        ));
+                "http://localhost:5173", "http://3.34.171.35:5173", "http://3.34.171.35", "http://3.34.171.35:80", "http://localhost:5002", "http://localhost:8080"        ));
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", config); // 모든 경로에 대해 CORS 구성을 등록
