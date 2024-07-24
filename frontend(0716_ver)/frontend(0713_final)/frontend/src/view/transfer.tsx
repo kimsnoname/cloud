@@ -181,7 +181,8 @@ const Transfer: React.FC = () => {
   
       if (response.data.success) {
         console.log('비밀번호가 확인되었습니다.');
-  
+        setVisible(false);
+
         const data = {
           userId,
           accountPassword,

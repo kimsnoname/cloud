@@ -33,7 +33,7 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource())) // CORS 설정 활성화
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/user/**","/api/account/create/**","api/posts/**").permitAll()
+                        .requestMatchers("/api/user/**", "/api/account/create/**", "api/posts/**", "/uploads/**", "/upload/**", "/uploadStatus/**", "/**/*.jsp").permitAll() // 업로드 및 상태 페이지에 대해 허용
                         .anyRequest().authenticated())
                 .sessionManagement(httpSecuritySessionManagementConfigurer ->
                         httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

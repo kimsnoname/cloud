@@ -3,15 +3,13 @@ package com.example.demo.service;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.example.demo.common.Constants;
-import com.example.demo.dto.AuthenticationRequest;
-import com.example.demo.dto.AuthenticationResponse;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.dto.AuthenticationRequest;
+import com.example.demo.dto.AuthenticationResponse;
 import com.example.demo.model.Role;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
@@ -70,7 +68,7 @@ public class UserService {
         String jwtToken = jwtService.generateToken(user);
         return AuthenticationResponse.builder()
                 .token(jwtToken)
-                .userName(user.getUsername())
+                .userName(user.getUserName())
                 .build();
     }
 }

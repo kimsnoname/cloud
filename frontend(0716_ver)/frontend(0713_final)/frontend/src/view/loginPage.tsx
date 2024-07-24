@@ -41,7 +41,7 @@ const Login: React.FC<LoginProps> = ({ setIsLoggedIn, setUserName }) => {
         localStorage.setItem('isLoggedIn', 'true');
         setIsLoggedIn(true);
 
-        navigate('/dashboard');
+        navigate('/trading');
       }
     } else {
       console.warn('Android getToken function is not available');
@@ -74,7 +74,7 @@ const Login: React.FC<LoginProps> = ({ setIsLoggedIn, setUserName }) => {
         setIsLoggedIn(true);
         setUserName(userName);
         message.success('로그인 성공');
-        navigate('/dashboard');
+        navigate('/trading');
       } else {
         message.error('로그인에 실패하였습니다.');
       }

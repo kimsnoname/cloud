@@ -58,6 +58,9 @@ const Trading: React.FC = () => {
 	const [attempts, setAttempts] = useState(0);
 	const [tradeType, setTradeType] = useState<'buy' | 'sell'>('buy');
 	const [visible, setVisible] = useState(false);
+	// const [url, setUrl] = useState<string>('');
+	const [imageSrc, setImageSrc] = useState<string | null>(null);
+	const [error, setError] = useState<string | null>(null);
 	const navigate = useNavigate();
 
 
@@ -104,6 +107,44 @@ const Trading: React.FC = () => {
 		}
 	}, [stockCode]);
 
+	useEffect(() => {
+		const fetchImage = async () => {
+		  try {
+			// 제품 이름을 영어로 변환
+			const translatedName = convertToEnglish(productName);
+			
+			// 이미지 URL 생성
+			const imageUrl = `https://logo.clearbit.com/${translatedName}.com`;
+
+
+			// 이미지 URL 생성
+			const response = await axios.get(`http://43.203.87.56:8080/api/user/image?imageUrl=${imageUrl}`);
+				
+			// Base64 형식의 이미지 데이터
+			const base64Image = response.data;
+			setImageSrc(`data:image/png;base64,${base64Image}`);
+			setError(null);
+		  } catch (err) {
+			setImageSrc(null);
+			setError('이미지를 불러오는 데 실패했습니다.');
+		  }
+		};
+	
+		fetchImage();
+	  }, [productName]);
+
+
+	// 제품 이름을 영어로 변환하는 함수
+	const convertToEnglish = (name: string) => {
+		const translations: { [key: string]: string } = {
+		'삼성전자': 'samsung',
+		'SK하이닉스': 'skhynix',
+		'에스트래픽': 'straffic',
+		// 다른 제품 이름 매핑 추가
+		};
+
+		return translations[name] || name;
+	};
 
 	const calculateVolume = (data: StockData) => {
 		// Sell orders의 quantity 합계 계산
@@ -158,7 +199,7 @@ const Trading: React.FC = () => {
 
 			if (response.data.success) {
 				message.success("비밀번호가 확인되었습니다.");
-
+				setVisible(false);
 
 				const data: TradeEntity = {
 					userId,
@@ -246,10 +287,21 @@ const Trading: React.FC = () => {
 		setChartVisible(!chartVisible);
 	};
 
+	// const handleOpenUrl = () => {
+	// 	window.open(url, '_blank');
+	// };
+
+	// const handleSetNaverUrl = () => {
+	// 	setUrl(`https://finance.naver.com/item/news.naver?code=${stockCode}`);
+	// };
+
+	// const handleSetDaumUrl = () => {
+	// 	setUrl(`https://finance.daum.net/quotes/A${stockCode}#news/stock`);
+	// };
+
 	if (!stockData) {
 		return <p>Loading...</p>;
 	}
-
 
 
 
@@ -265,23 +317,51 @@ const Trading: React.FC = () => {
 
 								<Row style={{ alignItems: 'center' }}>
 									{!isMobile ? (
-										<Col span={6}>
-											<Card className="price-info" bordered={true} size="small" style={{ width: '100%', height: '100px', display: 'flex', alignItems: 'left', textAlign: 'left', justifyContent: 'left' }}>
-												<Title level={5} style={{ marginTop: 0, marginBottom: '-30px', marginLeft: '10px', color: '#C94077', fontWeight: "bold" }}>{productName}</Title>
-												<Title level={3} style={{ marginBottom: '-21px', marginLeft: '10px' }}>{stockData.current_price}원</Title>
-												{/* <Title level={5} style={{marginTop:'-15px', textSizeAdjust:10}}>{jobDate}</Title> */}
-												<span style={{ fontSize: '15px', marginLeft: '10px' }}>{jobDate}</span>
-											</Card>
-										</Col>
+									<Col span={6} style={{ display: 'flex' }}>
+										{/* Left Card with Image */}
+										<Card className="image-card" bordered={true} size="small" style={{ width: '100px', height: '100px', marginRight: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+											{imageSrc ? (
+												<img src={imageSrc} alt={stockCode} style={{ width: '80px', height: '80px', objectFit: 'cover' }} />
+											) : (
+												<div style={{ width: '80px', height: '80px', backgroundColor: '#f0f0f0' }}>이미지를 로딩 중입니다...</div>
+											)}
+											{error && <div className="error">{error}</div>}
+										</Card>
+
+										{/* Right Card with Text Information */}
+										<Card className="price-info" bordered={true} size="small" style={{ flex: 1, height: '100px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+											<Title level={5} style={{  marginBottom: '-10	0px', color: '#C94077', fontWeight: 'bold' }}>
+												{productName}
+											</Title>
+											<Title level={3} style={{ marginBottom: '-100px' }}>
+												{stockData.current_price}원	
+											</Title>
+											<span style={{ fontSize: '15px' }}>{jobDate}</span>
+										</Card>
+									</Col>
 									) : (
-										<Col span={24}>
-											<Card className="price-info" bordered={true} size="small" style={{ width: cardSize, height: '100px', display: 'flex', alignItems: 'left', textAlign: 'left', justifyContent: 'left' }}>
-												<Title level={5} style={{ marginTop: 0, marginBottom: '-30px', marginLeft: '10px', color: '#C94077', fontWeight: "bold" }}>{productName}</Title>
-												<Title level={3} style={{ marginBottom: '-21px', marginLeft: '10px' }}>{stockData.current_price}원</Title>
-												{/* <Title level={5} style={{marginTop:'-15px', textSizeAdjust:10}}>{jobDate}</Title> */}
-												<span style={{ fontSize: '15px', marginLeft: '10px' }}>{jobDate}</span>
-											</Card>
-										</Col>
+									<Col span={24} style={{ display: 'flex', alignItems: 'center' }}>
+										{/* Left Card with Image */}
+										<Card className="image-card" bordered={true} size="small" style={{ width: '100px', height: '100px', marginRight: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+											{imageSrc ? (
+												<img src={imageSrc} alt={stockCode} style={{ width: '80px', height: '80px', objectFit: 'cover' }} />
+											) : (
+												<div style={{ width: '80px', height: '80px', backgroundColor: '#f0f0f0' }}>이미지를 로딩 중입니다...</div>
+											)}
+											{error && <div className="error">{error}</div>}
+										</Card>
+
+										{/* Right Card with Text Information */}
+										<Card className="price-info" bordered={true} size="small" style={{ width: cardSize, height: '100px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+											<Title level={5} style={{ marginTop: 0, marginBottom: '-30px', marginLeft: '10px', color: '#C94077', fontWeight: 'bold' }}>
+												{productName}
+											</Title>
+											<Title level={3} style={{ marginBottom: '-21px', marginLeft: '10px' }}>
+												{stockData.current_price}원
+											</Title>
+											<span style={{ fontSize: '15px', marginLeft: '10px' }}>{jobDate}</span>
+										</Card>
+									</Col>
 									)}
 									{!isMobile ? (
 										<Col span={11}>

@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.client.RestTemplate;
 
 import com.example.demo.repository.UserRepository;
 
@@ -54,4 +55,9 @@ public class ApplicationConfig {
     public PasswordEncoder md5PasswordEncoder() {
         return new MD5PasswordEncoder();
     }
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }    
 }
