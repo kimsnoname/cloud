@@ -1,11 +1,14 @@
 package com.example.demo.controller;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,18 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Transaction;
 import com.example.demo.model.User;
 import com.example.demo.model.UserPortfolio;
-
-import com.example.demo.repository.UserRepository;
 import com.example.demo.repository.TransactionRepository;
-
+import com.example.demo.repository.UserRepository;
 import com.example.demo.service.JwtService;
 import com.example.demo.service.TransactionService;
 import com.example.demo.service.UserPortfolioService;
 
-
 import jakarta.validation.Valid;
-import java.util.Optional;
-import java.util.List;
 
 
 @RestController

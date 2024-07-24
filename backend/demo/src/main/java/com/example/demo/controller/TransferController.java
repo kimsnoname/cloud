@@ -24,7 +24,7 @@ import com.example.demo.service.TransferService;
 
 @RestController
 @RequestMapping("/api/account")
-@CrossOrigin(origins = "http://localhost:5137")
+@CrossOrigin(origins = "http://localhost:8080")
 public class TransferController {
     
     @Autowired

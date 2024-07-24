@@ -74,20 +74,20 @@ const MainPage: React.FC = () => {
   };
 
   
-  const toggleLogin = () => {
-    const newLoginState = !isLoggedIn;
-    setIsLoggedIn(newLoginState);
-    if (newLoginState) {
-      setUserName('User'); // replace with actual username if needed
-      localStorage.setItem('isLoggedIn', 'true');
-      localStorage.setItem('userName', 'User');
-    } else {
-      setUserName(null);
-      localStorage.removeItem('isLoggedIn');
-      localStorage.removeItem('userName');
-      localStorage.removeItem('accessToken');
-    }
-  }; 
+  // const toggleLogin = () => {
+  //   const newLoginState = !isLoggedIn;
+  //   setIsLoggedIn(newLoginState);
+  //   if (newLoginState) {
+  //     setUserName('User'); // replace with actual username if needed
+  //     localStorage.setItem('isLoggedIn', 'true');
+  //     localStorage.setItem('userName', 'User');
+  //   } else {
+  //     setUserName(null);
+  //     localStorage.removeItem('isLoggedIn');
+  //     localStorage.removeItem('userName');
+  //     localStorage.removeItem('accessToken');
+  //   }
+  // }; 
 
   const isAuthPage = location.pathname === '/login' || location.pathname === '/register' || location.pathname === '/welcome' || location.pathname === '/accountRegistration';
 
@@ -146,7 +146,7 @@ const MainPage: React.FC = () => {
                 <Button type="default" onClick={handleLoginRedirect} className="login-button">로그인</Button>
               </>
             )}
-            <Button type="dashed" onClick={toggleLogin}>Toggle Login</Button>  
+            {/* <Button type="dashed" onClick={toggleLogin}>Toggle Login</Button>   */}
           </div>
         </div>
       )}

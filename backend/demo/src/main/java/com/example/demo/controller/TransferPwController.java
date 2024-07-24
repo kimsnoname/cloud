@@ -18,7 +18,7 @@ import com.example.demo.service.TransferService;
 
 @RestController
 @RequestMapping("/api/transfer")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://localhost:8080")
 public class TransferPwController {
 
     @Autowired

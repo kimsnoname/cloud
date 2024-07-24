@@ -33,7 +33,7 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource())) // CORS 설정 활성화
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/user/**", "/api/account/create/**", "api/posts/**", "/uploads/**", "/upload/**", "/uploadStatus/**", "/**/*.jsp").permitAll() // 업로드 및 상태 페이지에 대해 허용
+                        .requestMatchers("/api/user/**", "/api/user/**/**", "/api/account/**", "api/posts/**", "api/transfer/**", "api/transaction/**", "/uploads/**", "/upload/**", "/uploadStatus/**", "/**/*.jsp").permitAll() // 업로드 및 상태 페이지에 대해 허용
                         .anyRequest().authenticated())
                 .sessionManagement(httpSecuritySessionManagementConfigurer ->
                         httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -50,7 +50,7 @@ public class SecurityConfig {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
         config.setAllowedOrigins(List.of(
-                "http://localhost:5173", "http://3.34.171.35:5173", "http://3.34.171.35", "http://3.34.171.35:80", "http://localhost:5002", "http://localhost:8080"        ));
+                "http://localhost:5173", "http://3.34.171.35:5173", "http://3.34.171.35", "http://3.34.171.35:80", "http://localhost:5002", "http://localhost:8080"   ));
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", config); // 모든 경로에 대해 CORS 구성을 등록
